@@ -1,0 +1,33 @@
+{
+    "name": "list",
+    "type": "flogo:function",
+    "version": "0.1.0",
+    "title": "ListFunctions",
+    "description": "ListFunctions",
+    "functions": [
+        {
+            "name": "sort",
+            "description": "Sort a flat list or a object list by field name(number or string). The third parameter is for desc or asc order(boolean).\n Leave empty the field name for sort a flat list.",
+            "example": "list.sort($flow.persons, \"age\", true) or list.sort($flow.numbers, \"\", true)",
+            "args": [
+                {
+                    "name": "items",
+                    "type": "array",
+                    "valueType": "any"
+                },
+                {
+                    "name": "fieldname",
+                    "type": "string"
+                },
+                {
+                    "name": "desc",
+                    "type": "boolean"
+                }
+            ],
+            "return": {
+                "type": "array",
+                "valueType": "any"
+            }
+        }
+    ]
+}
