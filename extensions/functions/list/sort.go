@@ -57,7 +57,7 @@ func (s *Sort) Eval(params ...interface{}) (interface{}, error) {
 		s.SortByNumberField(items, field, desc)
 	}
 
-	return reflect.ValueOf(items).Interface(), nil
+	return items, nil
 }
 
 func (s *Sort) InterfaceToArray(something interface{}) []interface{} {
