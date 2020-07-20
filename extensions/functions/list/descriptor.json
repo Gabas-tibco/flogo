@@ -2,13 +2,13 @@
     "name": "list",
     "type": "flogo:function",
     "version": "0.1.0",
-    "title": "ListFunctions",
-    "description": "ListFunctions",
+    "title": "List Functions",
+    "description": "List Functions",
     "functions": [
         {
             "name": "sort",
-            "description": "Sort a flat list or a object list by field name(number or string). The third parameter is for desc or asc order(boolean).\n Leave empty the field name for sort a flat list.",
-            "example": "list.sort($flow.persons, \"age\", true) or list.sort($flow.numbers, \"\", true)",
+            "description": "Sort a string/number list or an object list by a field. Params -> list, desc(bool), field(optional string).",
+            "example": "list.sort($flow.numbers, false), list.sort($flow.names, true), list.sort($flow.persons, false, \"age\")",
             "args": [
                 {
                     "name": "items",
@@ -16,12 +16,13 @@
                     "valueType": "any"
                 },
                 {
-                    "name": "fieldname",
-                    "type": "string"
-                },
-                {
                     "name": "desc",
                     "type": "boolean"
+                },
+                {
+                    "name": "field",
+                    "type": "string",
+                    "required": false
                 }
             ],
             "return": {

@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/project-flogo/core/data"
 	"github.com/project-flogo/core/data/expression/function"
-	"github.com/project-flogo/core/support/log"
 	"reflect"
 	"sort"
 	"strconv"
@@ -23,17 +22,20 @@ func (s *Sort) Name() string {
 }
 
 func (s *Sort) Sig() (paramTypes []data.Type, isVariadic bool) {
-	return []data.Type{data.TypeAny, data.TypeString, data.TypeBool}, false
+	return []data.Type{data.TypeAny, data.TypeBool}, true
 }
 
 func (s *Sort) Eval(params ...interface{}) (interface{}, error) {
 	items := s.InterfaceToArray(params[0])
-	field := params[1].(string)
-	desc := params[2].(bool)
-	log.RootLogger().Debugf("Start list Sort function with parameters %+v, %+v and %+v", items, field)
+	desc := params[1].(bool)
+	field:=""
 
-	if items == nil {
-		return items, nil
+	if len(params) > 2{
+		field = params[2].(string)
+	}
+
+	if items == nil || len(items) == 0 {
+		return []interface{}{}, nil
 	}
 
 	//If the field is empty then is a flat array

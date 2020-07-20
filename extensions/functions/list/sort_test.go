@@ -42,7 +42,7 @@ func GenerateList() []map[string]interface{} {
 
 func TestSortNumber(t *testing.T) {
 	numbers := [4]int{3, 4, 1, 2}
-	sorted, _ := sortF.Eval(numbers, "", true)
+	sorted, _ := sortF.Eval(numbers, true)
 	sortedList := sortF.InterfaceToArray(sorted)
 	assert.Equal(t, sortF.ToFloat(sortedList[0]), float64(4))
 	assert.Equal(t, sortF.ToFloat(sortedList[1]), float64(3))
@@ -52,7 +52,7 @@ func TestSortNumber(t *testing.T) {
 
 func TestSortString(t *testing.T) {
 	numbers := [4]string{"C", "D", "A", "B"}
-	sorted, _ := sortF.Eval(numbers, "", false)
+	sorted, _ := sortF.Eval(numbers, false)
 	sortedList := sortF.InterfaceToArray(sorted)
 	assert.Equal(t, reflect.ValueOf(sortedList[0]).String(), "A")
 	assert.Equal(t, reflect.ValueOf(sortedList[1]).String(), "B")
@@ -63,7 +63,7 @@ func TestSortString(t *testing.T) {
 func TestSortNumberByField(t *testing.T) {
 	field := "age"
 	items := GenerateList()
-	sorted, _ := sortF.Eval(items, field, false)
+	sorted, _ := sortF.Eval(items, false, field)
 	sortedList := sorted.([]interface{})
 	assert.Equal(t, sortF.ToFloat(sortedList[0].(map[string]interface{})[field]), float64(1))
 	assert.Equal(t, sortF.ToFloat(sortedList[1].(map[string]interface{})[field]), float64(2))
@@ -74,11 +74,17 @@ func TestSortNumberByField(t *testing.T) {
 func TestSortStringByField(t *testing.T) {
 	field := "name"
 	items := GenerateList()
-	sorted, _ := sortF.Eval(items, field, true)
+	sorted, _ := sortF.Eval(items, true, field)
 	sortedList := sorted.([]interface{})
-	sortF.ToString(sortedList[0].(map[string]interface{})[field])
 	assert.Equal(t, sortF.ToString(sortedList[0].(map[string]interface{})[field]), "D")
 	assert.Equal(t, sortF.ToString(sortedList[1].(map[string]interface{})[field]), "C")
 	assert.Equal(t, sortF.ToString(sortedList[2].(map[string]interface{})[field]), "B")
 	assert.Equal(t, sortF.ToString(sortedList[3].(map[string]interface{})[field]), "A")
+}
+
+func TestEmptyArray(t *testing.T) {
+	var items []string
+	sorted, _ := sortF.Eval(items, true)
+	sortedList := sorted.([]interface{})
+	assert.Equal(t, len(sortedList), 0)
 }
