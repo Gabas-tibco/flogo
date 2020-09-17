@@ -1,0 +1,28 @@
+{
+    "name": "csv",
+    "type": "flogo:function",
+    "version": "0.1.0",
+    "title": "Csv Functions",
+    "author": "Gonzalo Lopez <glopez@tibco.com>",
+    "description": "Csv Functions",
+    "functions": [
+        {
+            "name": "csvToJson",
+            "description": "Csv Parser",
+            "example": "csv.csvToJson($flow.csv, ';')",
+            "args": [
+                {
+                    "name": "csvString",
+                    "type": "string"
+                },
+                {
+                    "name": "separator",
+                    "type": "string"
+                }
+            ],
+            "return": {
+                "type": "any"
+            }
+        }
+    ]
+}

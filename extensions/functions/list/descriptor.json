@@ -3,6 +3,7 @@
     "type": "flogo:function",
     "version": "0.1.0",
     "title": "List Functions",
+    "author": "Gonzalo Lopez <glopez@tibco.com>",
     "description": "List Functions",
     "functions": [
         {
