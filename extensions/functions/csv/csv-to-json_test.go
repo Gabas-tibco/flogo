@@ -20,5 +20,5 @@ row21;row22;row23;row24`
 
 	assert.Equal(t, len(structResult.Columns), 4)
 	assert.Equal(t, len(structResult.Rows), 2)
-	assert.Equal(t, len(structResult.Rows[0]), 4)
+	assert.Equal(t, len(structResult.Rows[0].Row), 4)
 }

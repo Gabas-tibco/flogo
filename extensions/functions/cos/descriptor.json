@@ -1,0 +1,30 @@
+{
+    "name": "cos",
+    "type": "flogo:function",
+    "version": "0.1.0",
+    "title": "Cos Functions",
+    "author": "Gonzalo Lopez <glopez@tibco.com>",
+    "description": "cos",
+    "functions": [
+        {
+            "name": "uniquizeByProperty",
+            "description": "Uniquize by property. Store the first occurrence of a value",
+            "example": "cos.uniquizeByProperty(list, 'name')",
+            "args": [
+                {
+                    "name": "items",
+                    "type": "array",
+                    "valueType": "any"
+                },
+                {
+                    "name": "property",
+                    "type": "string"
+                }
+            ],
+            "return": {
+                "type": "array",
+                "valueType": "any"
+            }
+        }
+    ]
+}

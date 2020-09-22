@@ -13,9 +13,13 @@ import (
 type CsvToJson struct {
 }
 
+type Row struct {
+	Row []string `json:"row"`
+}
+
 type ParsedCsv struct {
 	Columns []string `json:"columns"`
-	Rows    [][]string `json:"rows"`
+	Rows    []Row `json:"rows"`
 }
 
 func init() {
@@ -36,13 +40,13 @@ func (s *CsvToJson) Eval(params ...interface{}) (interface{}, error) {
 
 	scanner := bufio.NewScanner(strings.NewReader(csv))
 	var columns []string
-	var rows [][]string = [][]string{}
+	var rows []Row = []Row{}
 	i := 0
 	for scanner.Scan() {
 		if i == 0 {
 			columns = strings.Split(strings.Trim(scanner.Text(), " "), separator)
 		} else {
-			rows = append(rows, strings.Split(strings.Trim(scanner.Text(), " "), separator))
+			rows = append(rows, Row{strings.Split(strings.Trim(scanner.Text(), " "), separator)})
 		}
 		i++
 	}
