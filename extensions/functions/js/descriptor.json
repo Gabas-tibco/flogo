@@ -1,0 +1,29 @@
+{
+    "name": "js",
+    "type": "flogo:function",
+    "version": "0.1.0",
+    "title": "JS Functions",
+    "author": "Gonzalo Lopez <glopez@tibco.com>",
+    "description": "js functions",
+    "functions": [
+        {
+            "name": "run",
+            "description": "run js script and return any type. ECMAScript 5.",
+            "example": "js.run(script, $flow.item) ->  script = 'return 288 + 12;' or script = '$flow.age += 1; return $flow;' or script = 'var aux = 20; return aux * 10;'",
+            "args": [
+                {
+                    "name": "script",
+                    "type": "string"
+                },
+                {
+                    "name": "object",
+                    "type": "any",
+                    "required": false
+                }
+            ],
+            "return": {
+                "type": "any"
+            }
+        }
+    ]
+}
