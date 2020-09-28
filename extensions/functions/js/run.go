@@ -34,14 +34,18 @@ func (s *Run) Eval(params ...interface{}) (interface{}, error) {
 	baseScript := `
 		function runScript() {
           console.log("Executing JS script");
-          var $flow = JSON.parse(JSON.stringify($param));
+          var $flow;
+          try {
+            $flow = JSON.parse($param);
+          } catch (e) {
+            $flow = $param;
+          }
           // console.log(JSON.stringify($flow));
 		  %s
 		} 
         var $result = runScript();
     `
 	completeScript := fmt.Sprintf(baseScript, params[0].(string))
-	fmt.Println(completeScript)
 
 	_, err := vm.Run(completeScript)
 	result, _ := vm.Get("$result")

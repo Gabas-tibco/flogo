@@ -18,9 +18,9 @@ func TestRunNumber(t *testing.T) {
 
 func TestRunWithParams(t *testing.T) {
 	script := "return $flow.Number + $flow.Text;"
-	result, _ := run.Eval(script, struct {Number int; Text string}{288, "Hello"})
+	result, _ := run.Eval(script, map[string]interface{}{"Number": 288, "Text": "HelloWorld", "other": "something"})
 
-	assert.Equal(t, toString(result), "288Hello")
+	assert.Equal(t, toString(result), "288HelloWorld")
 }
 
 func TestObject(t *testing.T) {
@@ -30,7 +30,7 @@ func TestObject(t *testing.T) {
         console.log("Number value after-> "+$flow.Number)
 		return $flow;
 	`
-	result, _ := run.Eval(script, struct {Number int; Text string; other string}{42, "Hello world!", "something"})
+	result, _ := run.Eval(script, map[string]interface{}{"Number": 42, "Text": "HelloWorld", "other": "something"} )
 	objMap, _ := structToMap(result)
 
 	assert.Equal(t, "84", toString(objMap["Number"]))
