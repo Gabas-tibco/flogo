@@ -1,0 +1,24 @@
+{
+    "name": "java",
+    "type": "flogo:function",
+    "version": "0.1.0",
+    "title": "Java Functions",
+    "author": "Gonzalo Lopez <glopez@tibco.com>",
+    "description": "java functions",
+    "functions": [
+        {
+            "name": "hashCode",
+            "description": "java hashCode function",
+            "example": "java.hashCode($flow.item)",
+            "args": [
+                {
+                    "name": "object",
+                    "type": "any"
+                }
+            ],
+            "return": {
+                "type": "any"
+            }
+        }
+    ]
+}
